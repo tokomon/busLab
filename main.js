@@ -25,6 +25,13 @@ function cambiar_color_over(event){
 
  }
 
+function cambiar_color(idn){ 
+
+ var c1 = document.getElementById(idn);
+
+   c1.style.background="#66ff33";
+      
+ }
 
 
 
@@ -152,3 +159,44 @@ onmouseout="cambiar_color_out(this)
       </table><br>
 
 */
+
+
+
+ // Obtener la referencia del elemento body
+  //var body = document.getElementsByTagName("body")[0];
+ 
+  // Crea un elemento <table> y un elemento <tbody>
+  var tabla   = document.getElementsByTagName("table")[0];
+
+  var tblBody = document.createElement("tbody");
+ 
+ var t=1;
+  // Crea las celdas
+  for (var i = 0; i < 4; i++) {
+    // Crea las hileras de la tabla
+    var hilera = document.createElement("tr");
+ 
+    for (var j = 0; j < 8; j++) {
+      // Crea un elemento <td> y un nodo de texto, haz que el nodo de
+      // texto sea el contenido de <td>, ubica el elemento <td> al final
+      // de la hilera de la tabla
+      var celda = document.createElement("td");
+      var textoCelda = document.createTextNode(t);
+      celda.appendChild(textoCelda);
+      celda.setAttribute("id", t.toString());
+      celda.setAttribute("onclick","cambiar_color("+t.toString()+")");
+     // celda.setAttribute("onmouseout","cambiar_color("+t.toString()+")");
+      hilera.appendChild(celda);
+      t++;
+    }
+ 
+    // agrega la hilera al final de la tabla (al final del elemento tblbody)
+    tblBody.appendChild(hilera);
+  }
+ 
+  // posiciona el <tbody> debajo del elemento <table>
+  tabla.appendChild(tblBody);
+  // appends <table> into <body>
+  //body.appendChild(tabla);
+  // modifica el atributo "border" de la tabla y lo fija a "2";
+  tabla.setAttribute("border", "2");
